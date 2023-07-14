@@ -1,14 +1,7 @@
-import {
-  Button,
-  Container,
-  Grid,
-  ThemeOptions,
-  Typography,
-} from '@mui/material';
+import { Button, Container, Grid, Typography } from '@mui/material';
 import MediaCard from '../../components/Cards/Card';
 import './cat.scss';
 import Stack from '@mui/joy/Stack';
-import { makeStyles } from '@mui/styles';
 import { useEffect, useState } from 'react';
 import BasicModalDialog from '../../components/modal/modal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,15 +11,7 @@ import {
   getCatsAction,
   getMoreAction,
 } from '../../store/actions/cat.action';
-
-const useStyles = makeStyles((theme: ThemeOptions) => ({
-  container: {
-    textAlign: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-  },
-}));
+import { useStyles } from '../../styles';
 
 const Cats = () => {
   const classes = useStyles();
@@ -38,7 +23,7 @@ const Cats = () => {
 
   useEffect(() => {
     getCatsAction(dispatch);
-  }, []);
+  }, [dispatch]);
 
   const viewCat = (id: string) => {
     getCatIdAction(dispatch, id, cats);

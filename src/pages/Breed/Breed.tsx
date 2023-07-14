@@ -12,20 +12,11 @@ import {
 } from '../../store/actions/cat.action';
 import CatBreedModal from './CatBreedModal';
 import StandardImageList from '../../components/ImageList/ImageList';
-
-const useStyles = makeStyles((theme: ThemeOptions) => ({
-  container: {
-    textAlign: 'center',
-    display: 'flex',
-    marginTop: '20px',
-    width: '100%',
-  },
-}));
+import { useStyles } from '../../styles';
 
 const Breeds = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState('');
   const { breeds, breed } = useSelector((state: RootState) => state.cat);
 
   const dispatch = useDispatch();
@@ -36,14 +27,10 @@ const Breeds = () => {
 
   const getIdBreed = (id: string) => {
     getBreedsIdAction(dispatch, id);
-    if (breed && breed.length > 0 && breed[0].breeds.length > 0) {
-      const name = breed[0].breeds[0].name;
-      setName(name);
-    }
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.wrapper}>
       <Container maxWidth={'xl'}>
         <Stack mb={2}>
           <Datatable
@@ -55,8 +42,8 @@ const Breeds = () => {
           />
         </Stack>
         {open && (
-          <CatBreedModal open={open} setOpen={setOpen} name={name}>
-            <StandardImageList breed={breed} name={name} />
+          <CatBreedModal open={open} setOpen={setOpen}>
+            <StandardImageList cat={breed} />
           </CatBreedModal>
         )}
       </Container>

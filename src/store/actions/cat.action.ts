@@ -139,11 +139,7 @@ export const getBreedsAction = async (dispatch: AppDispatch) => {
   }
 };
 
-export const getBreedsIdAction = async (
-  dispatch: AppDispatch,
-  id: string,
-  breed?: ICat[]
-) => {
+export const getBreedsIdAction = async (dispatch: AppDispatch, id: string) => {
   dispatch(getBreedsIdStart());
   try {
     const { data } = await request.get<ICat[]>(

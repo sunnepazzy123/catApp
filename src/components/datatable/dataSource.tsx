@@ -14,7 +14,7 @@ export const column = [
   {
     field: 'description',
     headerName: 'description',
-    width: 100,
+    width: 300,
   },
   {
     field: 'life_span',
@@ -28,7 +28,7 @@ export const columnBreed = [
   {
     field: 'url',
     headerName: 'url',
-    width: 100,
+    width: 300,
   },
 
   {

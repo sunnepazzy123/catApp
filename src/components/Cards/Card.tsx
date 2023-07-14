@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
-import { Button, CardActions, Link, Stack } from '@mui/material';
+import { Button, CardActions } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { ICat } from '../../store/reducers/cat.reducer';
 import { addFavoriteAction } from '../../store/actions/cat.action';
@@ -25,7 +25,7 @@ export default function MediaCard({
   renderBreed,
 }: IMediaProps) {
   const dispatch = useDispatch();
-  const [copy, setCopy] = React.useState(false);
+  const [copy, setCopy] = useState(false);
   const { cats, favorites } = useSelector((state: RootState) => state.cat);
   const handleCardMode = (id: string, mode: string | undefined) => {
     if (mode === 'modal') {
@@ -73,26 +73,32 @@ export default function MediaCard({
         {renderBreed && renderBreed(cat)}
         {renderBreed && cat && (
           <div>
-            <Stack p={'10px'} flexDirection={'row'}>
+            <div
+              style={{ display: 'flex', alignItems: 'center', padding: '7px' }}
+            >
               <FavoriteIcon
                 onClick={() => addFavorite(cat.id)}
                 color={checkFavoriteHandler() ? 'warning' : 'disabled'}
               />
-              {checkFavoriteHandler()
-                ? 'Remove from Favorites'
-                : 'Add to Favorites'}
-            </Stack>
+              {checkFavoriteHandler() ? (
+                <p>Remove from Favorites</p>
+              ) : (
+                <p>Add to Favorites</p>
+              )}
+            </div>
             <CardActions>
               <Button size='small' onClick={() => copyLinkToClipboard(cat.url)}>
                 Copy Url
               </Button>
-              <Link
+
+              <Button
+                component='a'
                 href={`${cat.url}`}
-                sx={{ textDecoration: 'none' }}
-                rel='noopener'
+                color='primary'
+                size='small'
               >
-                Link
-              </Link>
+                Image Url
+              </Button>
               {copy && <Typography ml={'5px'}>copied</Typography>}
             </CardActions>
           </div>

@@ -1,20 +1,11 @@
 import React from 'react';
 import Datatable from '../../components/datatable/Datatable';
 import { columnBreed } from '../../components/datatable/dataSource';
-import { Container, ThemeOptions } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Container } from '@mui/material';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavoritesIdAction } from '../../store/actions/cat.action';
-
-const useStyles = makeStyles((theme: ThemeOptions) => ({
-  container: {
-    textAlign: 'center',
-    display: 'flex',
-    marginTop: '20px',
-    width: '100%',
-  },
-}));
+import { useStyles } from '../../styles';
 
 const Favorites = () => {
   const classes = useStyles();
@@ -24,7 +15,7 @@ const Favorites = () => {
     deleteFavoritesIdAction(dispatch, id, favorites);
   };
   return (
-    <div className={classes.container}>
+    <div className={classes.wrapper}>
       <Container maxWidth={'xl'}>
         <Datatable
           list={favorites}

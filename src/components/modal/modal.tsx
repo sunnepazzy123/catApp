@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ICat } from '../../store/reducers/cat.reducer';
 import { CardContent } from '@mui/material';
+import { getBreedName } from '../../utils/helpers';
 
 interface IModalProp {
   open: boolean;
@@ -20,12 +21,7 @@ const BasicModalDialog: React.FC<IModalProp> = ({
   setOpen,
 }) => {
   const { cat } = useSelector((state: RootState) => state.cat);
-  const getName = () => {
-      if(cat && cat.breeds.length > 0) {
-        return cat.breeds[0].name
-      }
-      return 'No Name'
-  }
+
   const close = () => {
     setOpen(!open);
   };
@@ -36,10 +32,18 @@ const BasicModalDialog: React.FC<IModalProp> = ({
       const rendeItem = (
         <>
           <CardContent sx={{ wordBreak: 'break-word' }}>
-            <Typography gutterBottom>Name: {name}</Typography>
-            <Typography>Description: {description}</Typography>
-            <Typography>LifeSpan: {life_span}</Typography>
-            <Typography>Url: {wikipedia_url}</Typography>
+            <Typography gutterBottom>
+              <b>Name:</b> {name}
+            </Typography>
+            <Typography>
+              <b>Description:</b> {description}
+            </Typography>
+            <Typography>
+              <b>LifeSpan:</b> {life_span} years
+            </Typography>
+            <Typography>
+              <b>Url:</b> {wikipedia_url}
+            </Typography>
           </CardContent>
         </>
       );
@@ -57,7 +61,7 @@ const BasicModalDialog: React.FC<IModalProp> = ({
           sx={{ maxWidth: 500 }}
         >
           <Typography id='basic-modal-dialog-title' component='h2'>
-           {getName()}
+            {getBreedName(cat)}
           </Typography>
           {children}
           {cat && (
