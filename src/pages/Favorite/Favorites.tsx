@@ -1,4 +1,3 @@
-import React from 'react';
 import Datatable from '../../components/datatable/Datatable';
 import { columnBreed } from '../../components/datatable/dataSource';
 import { Container } from '@mui/material';
