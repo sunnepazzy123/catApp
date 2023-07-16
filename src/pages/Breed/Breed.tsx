@@ -1,6 +1,5 @@
-import { Container, ThemeOptions } from '@mui/material';
+import { Container } from '@mui/material';
 import Stack from '@mui/joy/Stack';
-import { makeStyles } from '@mui/styles';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
